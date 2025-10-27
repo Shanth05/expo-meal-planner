@@ -1,9 +1,12 @@
+// Days of the week used for the weekly meal planner
 export const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
+// Returns a single recipe object by its id, or null if not found
 export function getRecipeById(recipes, recipeId) {
   return recipes.find((recipe) => recipe.id === recipeId) || null;
 }
 
+// Returns all days that have a specific recipe assigned
 export function getAssignedDays(planByDay, recipeId) {
   return DAYS.filter((day) => planByDay[day] === recipeId);
 }
@@ -16,6 +19,7 @@ function formatQuantityNotes(quantityCounts) {
   return Object.entries(quantityCounts).map(([quantity, count]) => (count > 1 ? `${count} x ${quantity}` : quantity));
 }
 
+// Calculates summary stats for the current week: planned meals, total cook time, protein and budget
 export function buildWeeklyStats(planByDay, recipes, completedDays) {
   const assignedRecipes = DAYS.map((day) => getRecipeById(recipes, planByDay[day])).filter(Boolean);
 
@@ -28,6 +32,7 @@ export function buildWeeklyStats(planByDay, recipes, completedDays) {
   };
 }
 
+// Aggregates ingredients from all planned recipes, deduplicates them and cross-checks the pantry
 export function buildShoppingList(planByDay, recipes, pantry) {
   const groupedItems = {};
 
