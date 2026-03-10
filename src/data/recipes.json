@@ -1,0 +1,301 @@
+[
+  {
+    "id": "overnight-oats-banana",
+    "title": "Overnight Oats with Banana",
+    "tagline": "Make-ahead breakfast jars for early lectures and low effort mornings.",
+    "mealType": "Breakfast",
+    "diet": "Vegetarian",
+    "cookTime": 5,
+    "budget": 2,
+    "protein": 14,
+    "calories": 360,
+    "rating": 4.8,
+    "tags": ["make-ahead", "cheap", "portable"],
+    "ingredients": [
+      { "name": "Rolled oats", "quantity": "60g", "aisle": "Dry goods" },
+      { "name": "Greek yogurt", "quantity": "120g", "aisle": "Chilled" },
+      { "name": "Milk", "quantity": "100ml", "aisle": "Chilled" },
+      { "name": "Banana", "quantity": "1", "aisle": "Produce" },
+      { "name": "Peanut butter", "quantity": "1 tbsp", "aisle": "Spreads" }
+    ],
+    "steps": [
+      "Stir the oats, yogurt and milk together in a lidded jar.",
+      "Slice over the banana and spoon on the peanut butter.",
+      "Chill overnight so breakfast is ready to grab in the morning."
+    ]
+  },
+  {
+    "id": "egg-fried-rice-boxes",
+    "title": "Egg Fried Rice Boxes",
+    "tagline": "A fast leftover-rice meal that works for both lunch and dinner.",
+    "mealType": "Lunch",
+    "diet": "Balanced",
+    "cookTime": 18,
+    "budget": 3,
+    "protein": 22,
+    "calories": 510,
+    "rating": 4.6,
+    "tags": ["batch-friendly", "budget", "leftovers"],
+    "ingredients": [
+      { "name": "Cooked rice", "quantity": "250g", "aisle": "Dry goods" },
+      { "name": "Eggs", "quantity": "2", "aisle": "Chilled" },
+      { "name": "Frozen peas", "quantity": "80g", "aisle": "Frozen" },
+      { "name": "Spring onion", "quantity": "2 stalks", "aisle": "Produce" },
+      { "name": "Soy sauce", "quantity": "1 tbsp", "aisle": "Condiments" }
+    ],
+    "steps": [
+      "Scramble the eggs in a hot pan and set them aside.",
+      "Fry the rice with peas, spring onion and soy sauce until hot.",
+      "Fold the eggs back in and divide into lunch boxes."
+    ]
+  },
+  {
+    "id": "chickpea-hummus-wraps",
+    "title": "Chickpea Hummus Wraps",
+    "tagline": "A no-cook lunch that still feels filling during busy campus days.",
+    "mealType": "Lunch",
+    "diet": "Vegan",
+    "cookTime": 10,
+    "budget": 2,
+    "protein": 16,
+    "calories": 430,
+    "rating": 4.5,
+    "tags": ["no-cook", "portable", "fiber"],
+    "ingredients": [
+      { "name": "Tortilla wraps", "quantity": "2", "aisle": "Bakery" },
+      { "name": "Chickpeas", "quantity": "150g", "aisle": "Canned goods" },
+      { "name": "Hummus", "quantity": "3 tbsp", "aisle": "Chilled" },
+      { "name": "Cucumber", "quantity": "1/2", "aisle": "Produce" },
+      { "name": "Carrot", "quantity": "1", "aisle": "Produce" }
+    ],
+    "steps": [
+      "Mash the chickpeas lightly so the filling holds together.",
+      "Spread hummus over the wraps and top with chickpeas and sliced vegetables.",
+      "Roll tightly, slice in half and pack for later."
+    ]
+  },
+  {
+    "id": "tuna-pasta-jars",
+    "title": "Tuna Pasta Salad Jars",
+    "tagline": "Cold pasta pots with enough protein to stop the 3pm crash.",
+    "mealType": "Lunch",
+    "diet": "Pescatarian",
+    "cookTime": 15,
+    "budget": 4,
+    "protein": 28,
+    "calories": 520,
+    "rating": 4.7,
+    "tags": ["meal-prep", "protein", "cold-lunch"],
+    "ingredients": [
+      { "name": "Pasta", "quantity": "200g", "aisle": "Dry goods" },
+      { "name": "Tuna", "quantity": "1 can", "aisle": "Canned goods" },
+      { "name": "Cherry tomatoes", "quantity": "100g", "aisle": "Produce" },
+      { "name": "Sweetcorn", "quantity": "80g", "aisle": "Canned goods" },
+      { "name": "Greek yogurt", "quantity": "2 tbsp", "aisle": "Chilled" }
+    ],
+    "steps": [
+      "Cook the pasta and cool it quickly under cold water.",
+      "Mix the pasta with tuna, sweetcorn, tomatoes and yogurt.",
+      "Layer into jars so lunch is ready to take out of the fridge."
+    ]
+  },
+  {
+    "id": "lentil-coconut-curry",
+    "title": "Lentil Coconut Curry",
+    "tagline": "A one-pan dinner with strong flavor and several cheap pantry staples.",
+    "mealType": "Dinner",
+    "diet": "Vegan",
+    "cookTime": 28,
+    "budget": 3,
+    "protein": 21,
+    "calories": 540,
+    "rating": 4.9,
+    "tags": ["one-pan", "freezer-friendly", "comfort"],
+    "ingredients": [
+      { "name": "Red lentils", "quantity": "180g", "aisle": "Dry goods" },
+      { "name": "Coconut milk", "quantity": "1 can", "aisle": "Canned goods" },
+      { "name": "Onion", "quantity": "1", "aisle": "Produce" },
+      { "name": "Garlic", "quantity": "2 cloves", "aisle": "Produce" },
+      { "name": "Curry paste", "quantity": "2 tbsp", "aisle": "Condiments" }
+    ],
+    "steps": [
+      "Soften the onion and garlic, then stir through the curry paste.",
+      "Add the lentils and coconut milk with a splash of water.",
+      "Simmer until the lentils are soft and the sauce thickens."
+    ]
+  },
+  {
+    "id": "chicken-noodle-stir-fry",
+    "title": "Chicken Noodle Stir Fry",
+    "tagline": "Fast, flexible and much cheaper than ordering in after a long day.",
+    "mealType": "Dinner",
+    "diet": "High Protein",
+    "cookTime": 22,
+    "budget": 5,
+    "protein": 33,
+    "calories": 610,
+    "rating": 4.8,
+    "tags": ["high-protein", "weeknight", "quick"],
+    "ingredients": [
+      { "name": "Chicken breast", "quantity": "200g", "aisle": "Chilled" },
+      { "name": "Egg noodles", "quantity": "180g", "aisle": "Dry goods" },
+      { "name": "Bell pepper", "quantity": "1", "aisle": "Produce" },
+      { "name": "Broccoli", "quantity": "1/2 head", "aisle": "Produce" },
+      { "name": "Soy sauce", "quantity": "2 tbsp", "aisle": "Condiments" }
+    ],
+    "steps": [
+      "Cook the noodles according to the packet and drain them.",
+      "Stir fry sliced chicken until browned, then add the vegetables.",
+      "Toss through the noodles and soy sauce until glossy."
+    ]
+  },
+  {
+    "id": "yogurt-berry-pots",
+    "title": "Yogurt Berry Crunch Pots",
+    "tagline": "A snack that feels like dessert but still supports the rest of the week.",
+    "mealType": "Snack",
+    "diet": "Vegetarian",
+    "cookTime": 5,
+    "budget": 2,
+    "protein": 12,
+    "calories": 240,
+    "rating": 4.4,
+    "tags": ["snack", "sweet", "grab-and-go"],
+    "ingredients": [
+      { "name": "Greek yogurt", "quantity": "150g", "aisle": "Chilled" },
+      { "name": "Frozen berries", "quantity": "80g", "aisle": "Frozen" },
+      { "name": "Granola", "quantity": "30g", "aisle": "Breakfast" },
+      { "name": "Honey", "quantity": "1 tsp", "aisle": "Spreads" }
+    ],
+    "steps": [
+      "Spoon yogurt into a small pot or jar.",
+      "Top with berries and granola for texture.",
+      "Finish with a little honey and chill until needed."
+    ]
+  },
+  {
+    "id": "turkey-burrito-bowls",
+    "title": "Turkey Burrito Bowls",
+    "tagline": "A strong batch-cooking option when the week is packed with deadlines.",
+    "mealType": "Dinner",
+    "diet": "High Protein",
+    "cookTime": 25,
+    "budget": 5,
+    "protein": 35,
+    "calories": 590,
+    "rating": 4.7,
+    "tags": ["batch-cook", "high-protein", "filling"],
+    "ingredients": [
+      { "name": "Turkey mince", "quantity": "250g", "aisle": "Chilled" },
+      { "name": "Cooked rice", "quantity": "250g", "aisle": "Dry goods" },
+      { "name": "Black beans", "quantity": "120g", "aisle": "Canned goods" },
+      { "name": "Tomato salsa", "quantity": "3 tbsp", "aisle": "Condiments" },
+      { "name": "Lettuce", "quantity": "1/2 head", "aisle": "Produce" }
+    ],
+    "steps": [
+      "Brown the turkey mince and simmer it briefly with salsa.",
+      "Warm the rice and black beans while chopping the lettuce.",
+      "Layer everything into bowls for a fast dinner or next-day lunch."
+    ]
+  },
+  {
+    "id": "tomato-soup-toasties",
+    "title": "Tomato Soup and Toasties",
+    "tagline": "Comfort food for colder evenings without spending much money.",
+    "mealType": "Dinner",
+    "diet": "Vegetarian",
+    "cookTime": 20,
+    "budget": 3,
+    "protein": 17,
+    "calories": 470,
+    "rating": 4.3,
+    "tags": ["comfort", "budget", "cold-weather"],
+    "ingredients": [
+      { "name": "Tomatoes", "quantity": "4", "aisle": "Produce" },
+      { "name": "Vegetable stock", "quantity": "400ml", "aisle": "Dry goods" },
+      { "name": "Bread", "quantity": "4 slices", "aisle": "Bakery" },
+      { "name": "Cheddar", "quantity": "60g", "aisle": "Chilled" },
+      { "name": "Onion", "quantity": "1", "aisle": "Produce" }
+    ],
+    "steps": [
+      "Cook the onion and tomatoes until soft, then blend with stock into soup.",
+      "Fill the bread with cheddar and toast both sides in a pan.",
+      "Serve the toasties with the hot soup."
+    ]
+  },
+  {
+    "id": "tofu-peanut-noodle-cups",
+    "title": "Tofu Peanut Noodle Cups",
+    "tagline": "A plant-based lunch that reheats well between classes.",
+    "mealType": "Lunch",
+    "diet": "Vegan",
+    "cookTime": 16,
+    "budget": 4,
+    "protein": 24,
+    "calories": 500,
+    "rating": 4.6,
+    "tags": ["vegan-protein", "meal-prep", "noodle"],
+    "ingredients": [
+      { "name": "Firm tofu", "quantity": "180g", "aisle": "Chilled" },
+      { "name": "Rice noodles", "quantity": "150g", "aisle": "Dry goods" },
+      { "name": "Peanut butter", "quantity": "1 tbsp", "aisle": "Spreads" },
+      { "name": "Lime", "quantity": "1", "aisle": "Produce" },
+      { "name": "Carrot", "quantity": "1", "aisle": "Produce" }
+    ],
+    "steps": [
+      "Bake or pan-fry the tofu until the edges turn golden.",
+      "Soak the noodles and toss them with peanut butter and lime juice.",
+      "Add carrot ribbons and tofu, then portion into cups."
+    ]
+  },
+  {
+    "id": "salmon-traybake",
+    "title": "Salmon Sweet Potato Traybake",
+    "tagline": "A low-effort oven dinner that still feels a little more premium.",
+    "mealType": "Dinner",
+    "diet": "Pescatarian",
+    "cookTime": 30,
+    "budget": 6,
+    "protein": 31,
+    "calories": 560,
+    "rating": 4.8,
+    "tags": ["traybake", "omega-3", "minimal washing"],
+    "ingredients": [
+      { "name": "Salmon fillet", "quantity": "1", "aisle": "Chilled" },
+      { "name": "Sweet potato", "quantity": "1 large", "aisle": "Produce" },
+      { "name": "Green beans", "quantity": "120g", "aisle": "Produce" },
+      { "name": "Olive oil", "quantity": "1 tbsp", "aisle": "Condiments" },
+      { "name": "Paprika", "quantity": "1 tsp", "aisle": "Spices" }
+    ],
+    "steps": [
+      "Roast the sweet potato first so it gets a head start.",
+      "Add the salmon and green beans with oil and paprika.",
+      "Bake until the fish flakes and the vegetables are tender."
+    ]
+  },
+  {
+    "id": "greek-salad-pitas",
+    "title": "Greek Salad Pita Pockets",
+    "tagline": "A bright lunch that works well when you want something fresh and fast.",
+    "mealType": "Lunch",
+    "diet": "Vegetarian",
+    "cookTime": 10,
+    "budget": 3,
+    "protein": 15,
+    "calories": 410,
+    "rating": 4.5,
+    "tags": ["fresh", "quick", "summer"],
+    "ingredients": [
+      { "name": "Pita bread", "quantity": "2", "aisle": "Bakery" },
+      { "name": "Feta", "quantity": "50g", "aisle": "Chilled" },
+      { "name": "Cucumber", "quantity": "1/2", "aisle": "Produce" },
+      { "name": "Tomatoes", "quantity": "2", "aisle": "Produce" },
+      { "name": "Olives", "quantity": "40g", "aisle": "Condiments" }
+    ],
+    "steps": [
+      "Chop the vegetables and crumble over the feta.",
+      "Warm the pitas briefly so they open without tearing.",
+      "Stuff the pitas with the salad mixture and serve."
+    ]
+  }
+]
