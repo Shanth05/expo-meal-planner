@@ -92,11 +92,10 @@ export function PlanScreen({
 
       <View style={styles.section}>
         <View style={styles.shoppingHeader}>
-          <View>
+          <View style={styles.shoppingTextBlock}>
             <Text style={styles.sectionTitle}>Auto shopping list</Text>
             <Text style={styles.sectionBody}>
-              Generated from all meals currently pinned to the week. Stocked pantry items stay visible but drop to the
-              bottom.
+              Generated from your pinned meals. Pantry items drop to the bottom.
             </Text>
           </View>
           <Pressable onPress={onOpenPantry} style={styles.secondaryButtonSmall}>
@@ -287,6 +286,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     gap: spacing.md,
     marginBottom: spacing.md,
+  },
+  shoppingTextBlock: {
+    flex: 1,
   },
   shoppingItem: {
     flexDirection: 'row',
