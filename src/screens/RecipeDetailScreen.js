@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { DayPicker } from '../components/DayPicker';
-import { colors, fonts, radii, spacing } from '../constants/theme';
+import { colors, fonts, radii, shadows, spacing } from '../constants/theme';
 import { DAYS } from '../utils/plan';
 
 export function RecipeDetailScreen({
@@ -96,26 +96,27 @@ export function RecipeDetailScreen({
 
 const styles = StyleSheet.create({
   hero: {
-    backgroundColor: colors.surfaceMuted,
+    backgroundColor: colors.forest,
     borderRadius: radii.lg,
     padding: spacing.xl,
     marginBottom: spacing.lg,
+    ...shadows.soft,
   },
   mealType: {
-    color: colors.accentDark,
+    color: colors.sun,
     fontFamily: fonts.bodyBold,
     fontSize: 13,
     marginBottom: spacing.sm,
     textTransform: 'uppercase',
   },
   title: {
-    color: colors.ink,
+    color: colors.paper,
     fontFamily: fonts.heading,
     fontSize: 30,
     lineHeight: 36,
   },
   tagline: {
-    color: colors.muted,
+    color: colors.sky,
     fontFamily: fonts.body,
     fontSize: 16,
     lineHeight: 24,
@@ -153,20 +154,22 @@ const styles = StyleSheet.create({
   actionButton: {
     borderRadius: radii.pill,
     borderWidth: 1,
-    borderColor: colors.accent,
+    borderColor: 'rgba(255,255,255,0.16)',
+    backgroundColor: 'rgba(255,255,255,0.08)',
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.sm,
   },
   primaryAction: {
-    backgroundColor: colors.accent,
+    backgroundColor: colors.sun,
+    borderColor: colors.sun,
   },
   actionText: {
-    color: colors.accentDark,
+    color: colors.paper,
     fontFamily: fonts.bodyBold,
     fontSize: 14,
   },
   primaryActionText: {
-    color: colors.paper,
+    color: colors.accentDark,
   },
   panel: {
     backgroundColor: colors.paper,
@@ -175,9 +178,10 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     padding: spacing.lg,
     marginBottom: spacing.lg,
+    ...shadows.soft,
   },
   sectionTitle: {
-    color: colors.ink,
+    color: colors.forest,
     fontFamily: fonts.heading,
     fontSize: 24,
   },
@@ -189,7 +193,7 @@ const styles = StyleSheet.create({
     marginTop: spacing.sm,
   },
   assignmentSummary: {
-    color: colors.success,
+    color: colors.accentDark,
     fontFamily: fonts.bodyBold,
     fontSize: 14,
     marginTop: spacing.md,
@@ -225,7 +229,7 @@ const styles = StyleSheet.create({
     marginTop: spacing.lg,
   },
   stepNumberBadge: {
-    backgroundColor: colors.forest,
+    backgroundColor: colors.accent,
     width: 28,
     height: 28,
     borderRadius: 14,

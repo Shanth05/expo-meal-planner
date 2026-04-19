@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { colors, fonts, radii, spacing } from '../constants/theme';
+import { colors, fonts, radii, shadows, spacing } from '../constants/theme';
 import { buildShoppingList, getUniqueIngredients } from '../utils/plan';
 
 const FILTERS = ['All', 'Needed', 'Stocked'];
@@ -90,7 +90,11 @@ export function PantryScreen({ onOpenPlan, onTogglePantryItem, pantry, planByDay
           <Pressable
             key={ingredient.key}
             onPress={() => onTogglePantryItem(ingredient.key)}
-            style={[styles.ingredientRow, ingredient.isInPantry && styles.ingredientRowStocked]}
+            style={[
+              styles.ingredientRow,
+              ingredient.neededThisWeek && styles.ingredientRowNeeded,
+              ingredient.isInPantry && styles.ingredientRowStocked,
+            ]}
           >
             <View style={styles.ingredientCopy}>
               <Text style={styles.ingredientName}>{ingredient.name}</Text>
@@ -98,7 +102,14 @@ export function PantryScreen({ onOpenPlan, onTogglePantryItem, pantry, planByDay
                 {ingredient.aisle} {ingredient.neededThisWeek ? '| used this week' : '| optional'}
               </Text>
             </View>
-            <Text style={styles.ingredientStatus}>{ingredient.isInPantry ? 'Stocked' : 'Missing'}</Text>
+            <Text
+              style={[
+                styles.ingredientStatus,
+                ingredient.isInPantry ? styles.ingredientStatusStocked : styles.ingredientStatusMissing,
+              ]}
+            >
+              {ingredient.isInPantry ? 'Stocked' : 'Missing'}
+            </Text>
           </Pressable>
         ))}
         {ingredients.length === 0 ? (
@@ -111,13 +122,16 @@ export function PantryScreen({ onOpenPlan, onTogglePantryItem, pantry, planByDay
 
 const styles = StyleSheet.create({
   headerCard: {
-    backgroundColor: colors.surfaceMuted,
+    backgroundColor: colors.paper,
     borderRadius: radii.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
     padding: spacing.xl,
     marginBottom: spacing.lg,
+    ...shadows.soft,
   },
   title: {
-    color: colors.ink,
+    color: colors.forest,
     fontFamily: fonts.heading,
     fontSize: 28,
   },
@@ -135,8 +149,10 @@ const styles = StyleSheet.create({
     marginTop: spacing.xl,
   },
   headerStat: {
-    backgroundColor: colors.paper,
+    backgroundColor: colors.surfaceSoft,
     borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.md,
   },
@@ -153,7 +169,7 @@ const styles = StyleSheet.create({
   planButton: {
     alignSelf: 'flex-start',
     borderRadius: radii.pill,
-    backgroundColor: colors.accent,
+    backgroundColor: colors.accentDark,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     marginTop: spacing.lg,
@@ -170,9 +186,10 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     padding: spacing.lg,
     marginBottom: spacing.lg,
+    ...shadows.soft,
   },
   searchInput: {
-    backgroundColor: colors.surfaceMuted,
+    backgroundColor: colors.surfaceSoft,
     borderRadius: radii.md,
     borderWidth: 1,
     borderColor: colors.border,
@@ -189,6 +206,7 @@ const styles = StyleSheet.create({
     marginTop: spacing.md,
   },
   filterChip: {
+    backgroundColor: colors.surfaceSoft,
     borderRadius: radii.pill,
     borderWidth: 1,
     borderColor: colors.accent,
@@ -212,6 +230,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     padding: spacing.lg,
+    ...shadows.soft,
   },
   ingredientRow: {
     flexDirection: 'row',
@@ -222,8 +241,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
   },
+  ingredientRowNeeded: {
+    borderLeftWidth: 4,
+    borderLeftColor: colors.accent,
+    paddingLeft: spacing.md,
+  },
   ingredientRowStocked: {
-    opacity: 0.72,
+    backgroundColor: colors.surfaceMuted,
+    borderRadius: radii.md,
   },
   ingredientCopy: {
     flex: 1,
@@ -240,9 +265,14 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   ingredientStatus: {
-    color: colors.accentDark,
     fontFamily: fonts.bodyBold,
     fontSize: 13,
+  },
+  ingredientStatusStocked: {
+    color: colors.success,
+  },
+  ingredientStatusMissing: {
+    color: colors.danger,
   },
   emptyText: {
     color: colors.muted,

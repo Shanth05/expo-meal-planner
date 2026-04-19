@@ -1,19 +1,21 @@
 import { Platform } from 'react-native';
 
 export const colors = {
-  background: '#f3ecdf',
-  paper: '#fffaf2',
-  surfaceMuted: '#efe4d2',
-  border: '#ddcdb7',
-  ink: '#1f1b18',
-  muted: '#6f6457',
-  accent: '#bd6a2f',
-  accentDark: '#7e4218',
-  forest: '#3e5c4e',
-  success: '#46705a',
-  rose: '#e8bea8',
-  sun: '#e9ca7d',
-  danger: '#a34a42',
+  background: '#f4f8f2',
+  paper: '#ffffff',
+  surfaceSoft: '#fbfdf9',
+  surfaceMuted: '#e9f4ed',
+  border: '#cfe1d4',
+  ink: '#17332c',
+  muted: '#5e726a',
+  accent: '#1b8a6b',
+  accentDark: '#0e5a45',
+  forest: '#163f33',
+  success: '#4ca86f',
+  rose: '#f7d7cc',
+  sun: '#f5c768',
+  sky: '#d8f0ee',
+  danger: '#c85c48',
 };
 
 export const spacing = {
@@ -52,10 +54,10 @@ export const fonts = {
 
 export const shadows = {
   soft: {
-    shadowColor: '#5f4c34',
-    shadowOpacity: 0.1,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 8 },
-    elevation: 3,
+    shadowColor: '#0d4c3b',
+    shadowOpacity: 0.12,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 4,
   },
 };

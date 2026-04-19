@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, fonts, radii, spacing } from '../constants/theme';
+import { colors, fonts, radii, shadows, spacing } from '../constants/theme';
 import { buildShoppingList, buildWeeklyStats, DAYS, getRecipeById } from '../utils/plan';
 
 export function PlanScreen({
@@ -129,18 +129,19 @@ export function PlanScreen({
 
 const styles = StyleSheet.create({
   summaryCard: {
-    backgroundColor: colors.surfaceMuted,
+    backgroundColor: colors.forest,
     borderRadius: radii.lg,
     padding: spacing.xl,
     marginBottom: spacing.lg,
+    ...shadows.soft,
   },
   summaryTitle: {
-    color: colors.ink,
+    color: colors.paper,
     fontFamily: fonts.heading,
     fontSize: 28,
   },
   summaryBody: {
-    color: colors.muted,
+    color: colors.sky,
     fontFamily: fonts.body,
     fontSize: 15,
     lineHeight: 23,
@@ -176,9 +177,10 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     padding: spacing.lg,
     marginBottom: spacing.lg,
+    ...shadows.soft,
   },
   sectionTitle: {
-    color: colors.ink,
+    color: colors.forest,
     fontFamily: fonts.heading,
     fontSize: 24,
   },
@@ -235,7 +237,7 @@ const styles = StyleSheet.create({
     marginTop: spacing.md,
   },
   primaryButton: {
-    backgroundColor: colors.accent,
+    backgroundColor: colors.accentDark,
     borderRadius: radii.pill,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
@@ -249,7 +251,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     borderRadius: radii.pill,
     borderWidth: 1,
-    borderColor: colors.accent,
+    borderColor: colors.sun,
+    backgroundColor: colors.sun,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     marginTop: spacing.lg,
@@ -257,7 +260,8 @@ const styles = StyleSheet.create({
   secondaryButtonSmall: {
     borderRadius: radii.pill,
     borderWidth: 1,
-    borderColor: colors.accent,
+    borderColor: colors.border,
+    backgroundColor: colors.surfaceSoft,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
   },
@@ -268,7 +272,7 @@ const styles = StyleSheet.create({
   },
   ghostButton: {
     borderRadius: radii.pill,
-    backgroundColor: colors.surfaceMuted,
+    backgroundColor: colors.rose,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
   },

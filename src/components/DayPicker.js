@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     marginTop: spacing.md,
   },
   chip: {
+    backgroundColor: colors.surfaceSoft,
     borderRadius: radii.pill,
     borderWidth: 1,
     borderColor: colors.border,
@@ -39,8 +40,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   chipSelected: {
-    backgroundColor: colors.accent,
-    borderColor: colors.accent,
+    backgroundColor: colors.accentDark,
+    borderColor: colors.accentDark,
   },
   chipCompleted: {
     backgroundColor: colors.success,

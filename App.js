@@ -1,7 +1,9 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import {
   ActivityIndicator,
+  Platform,
   Pressable,
+  RefreshControl,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -16,8 +18,10 @@ import { LibraryScreen } from './src/screens/LibraryScreen';
 import { RecipeDetailScreen } from './src/screens/RecipeDetailScreen';
 import { PlanScreen } from './src/screens/PlanScreen';
 import { PantryScreen } from './src/screens/PantryScreen';
+import { WelcomeScreen } from './src/screens/WelcomeScreen';
 import { buildShoppingList, buildWeeklyStats, getRecipeById } from './src/utils/plan';
 import { loadStoredState, saveStoredState } from './src/utils/storage';
+import { FavoritesScreen } from './src/screens/FavoritesScreen';
 
 const DEFAULT_STATE = {
   favorites: [],
@@ -28,6 +32,7 @@ const DEFAULT_STATE = {
 
 const TABS = [
   { key: 'library', label: 'Recipes' },
+  { key: 'saved', label: 'Saved' },
   { key: 'plan', label: 'Week Plan' },
   { key: 'pantry', label: 'Pantry' },
 ];
@@ -54,53 +59,29 @@ function appReducer(state, action) {
       };
     }
     case 'assign_recipe': {
-      const nextPlan = {
-        ...state.planByDay,
-        [action.day]: action.recipeId,
-      };
-      const nextCompleted = {
-        ...state.completedDays,
-        [action.day]: false,
-      };
-      return {
-        ...state,
-        planByDay: nextPlan,
-        completedDays: nextCompleted,
-      };
+      const nextPlan = { ...state.planByDay, [action.day]: action.recipeId };
+      const nextCompleted = { ...state.completedDays, [action.day]: false };
+      return { ...state, planByDay: nextPlan, completedDays: nextCompleted };
     }
     case 'remove_day': {
       const nextPlan = { ...state.planByDay };
       const nextCompleted = { ...state.completedDays };
       delete nextPlan[action.day];
       delete nextCompleted[action.day];
-      return {
-        ...state,
-        planByDay: nextPlan,
-        completedDays: nextCompleted,
-      };
+      return { ...state, planByDay: nextPlan, completedDays: nextCompleted };
     }
     case 'toggle_completed_day':
       return {
         ...state,
-        completedDays: {
-          ...state.completedDays,
-          [action.day]: !state.completedDays[action.day],
-        },
+        completedDays: { ...state.completedDays, [action.day]: !state.completedDays[action.day] },
       };
     case 'toggle_pantry_item':
       return {
         ...state,
-        pantry: {
-          ...state.pantry,
-          [action.itemKey]: !state.pantry[action.itemKey],
-        },
+        pantry: { ...state.pantry, [action.itemKey]: !state.pantry[action.itemKey] },
       };
     case 'reset_week':
-      return {
-        ...state,
-        planByDay: {},
-        completedDays: {},
-      };
+      return { ...state, planByDay: {}, completedDays: {} };
     default:
       return state;
   }
@@ -109,34 +90,25 @@ function appReducer(state, action) {
 export default function App() {
   const [state, dispatch] = useReducer(appReducer, DEFAULT_STATE);
   const [isHydrated, setIsHydrated] = useState(false);
-  const [activeScreen, setActiveScreen] = useState('library');
+  const [activeScreen, setActiveScreen] = useState('welcome');
   const [selectedRecipeId, setSelectedRecipeId] = useState(null);
   const [detailReturnScreen, setDetailReturnScreen] = useState('library');
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
-
     async function hydrate() {
       const storedState = await loadStoredState(DEFAULT_STATE);
-      if (!isMounted) {
-        return;
-      }
+      if (!isMounted) return;
       dispatch({ type: 'hydrate', payload: storedState });
       setIsHydrated(true);
     }
-
     hydrate();
-
-    return () => {
-      isMounted = false;
-    };
+    return () => { isMounted = false; };
   }, []);
 
   useEffect(() => {
-    if (!isHydrated) {
-      return;
-    }
-
+    if (!isHydrated) return;
     saveStoredState(state);
   }, [isHydrated, state]);
 
@@ -155,16 +127,18 @@ export default function App() {
     setSelectedRecipeId(null);
   }
 
-  function renderMainScreen() {
-    if (!isHydrated) {
-      return (
-        <View style={styles.loadingState}>
-          <ActivityIndicator size="large" color={colors.accent} />
-          <Text style={styles.loadingText}>Loading your saved week...</Text>
-        </View>
-      );
-    }
+  function handleRefresh() {
+    setIsRefreshing(true);
+    setTimeout(() => setIsRefreshing(false), 800);
+  }
 
+  function getBackLabel() {
+    if (detailReturnScreen === 'plan') return 'Week Plan';
+    if (detailReturnScreen === 'saved') return 'Saved';
+    return 'Recipes';
+  }
+
+  function renderMainScreen() {
     if (activeScreen === 'detail' && selectedRecipe) {
       return (
         <RecipeDetailScreen
@@ -176,6 +150,18 @@ export default function App() {
           planByDay={state.planByDay}
           recipe={selectedRecipe}
           saved={state.favorites.includes(selectedRecipe.id)}
+        />
+      );
+    }
+
+    if (activeScreen === 'saved') {
+      return (
+        <FavoritesScreen
+          favorites={state.favorites}
+          onOpenRecipe={(recipeId) => openRecipe(recipeId, 'saved')}
+          onToggleFavorite={(recipeId) => dispatch({ type: 'toggle_favorite', recipeId })}
+          planByDay={state.planByDay}
+          recipes={recipes}
         />
       );
     }
@@ -219,156 +205,126 @@ export default function App() {
     );
   }
 
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <StatusBar style="dark" />
-      <View style={styles.backgroundShapeOne} />
-      <View style={styles.backgroundShapeTwo} />
-      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        <View style={styles.heroCard}>
-          <Text style={styles.eyebrow}>LECTURE FUEL</Text>
-          <Text style={styles.heroTitle}>Turn quick recipe data into a realistic student meal plan.</Text>
-          <Text style={styles.heroBody}>
-            Browse the recipe library, sort and filter it, pin meals to days, then let the app build a shopping list
-            from your chosen week.
-          </Text>
-          <View style={styles.statsRow}>
-            <View style={styles.statCard}>
-              <Text style={styles.statValue}>{weeklyStats.plannedCount}/7</Text>
-              <Text style={styles.statLabel}>days planned</Text>
-            </View>
-            <View style={styles.statCard}>
-              <Text style={styles.statValue}>{weeklyStats.totalMinutes}</Text>
-              <Text style={styles.statLabel}>total minutes</Text>
-            </View>
-            <View style={styles.statCard}>
-              <Text style={styles.statValue}>{shoppingList.filter((item) => !item.isInPantry).length}</Text>
-              <Text style={styles.statLabel}>items to buy</Text>
-            </View>
-          </View>
-        </View>
+  const itemsToBuy = shoppingList.filter((item) => !item.isInPantry).length;
 
-        <View style={styles.workspace}>
-          {activeScreen === 'detail' ? (
-            <Pressable onPress={goBackFromDetail} style={styles.backButton}>
-              <Text style={styles.backButtonText}>Back to {detailReturnScreen === 'plan' ? 'week plan' : 'recipes'}</Text>
-            </Pressable>
+  return (
+    <View style={styles.outerContainer}>
+      <View style={styles.phoneFrame}>
+        <SafeAreaView style={styles.safeArea}>
+          <StatusBar style="dark" />
+          <View style={styles.bgShapeOne} pointerEvents="none" />
+          <View style={styles.bgShapeTwo} pointerEvents="none" />
+
+          {!isHydrated ? (
+            <View style={styles.loadingState}>
+              <ActivityIndicator size="large" color={colors.accent} />
+              <Text style={styles.loadingText}>Loading your saved week...</Text>
+            </View>
+          ) : activeScreen === 'welcome' ? (
+            <WelcomeScreen onGetStarted={() => setActiveScreen('library')} />
           ) : (
-            <TabBar activeTab={activeScreen} onChange={setActiveScreen} tabs={TABS} />
+            <ScrollView
+              contentContainerStyle={styles.scrollContent}
+              showsVerticalScrollIndicator={false}
+              refreshControl={
+                activeScreen === 'library' ? (
+                  <RefreshControl
+                    refreshing={isRefreshing}
+                    onRefresh={handleRefresh}
+                    tintColor={colors.accent}
+                    colors={[colors.accent]}
+                  />
+                ) : undefined
+              }
+            >
+              {/* Compact app header */}
+              <View style={styles.appHeader}>
+                <View>
+                  <Text style={styles.appHeaderTitle}>LectureFuel</Text>
+                  <Text style={styles.appHeaderSub}>student meal planner</Text>
+                </View>
+                <View style={styles.headerStats}>
+                  <View style={styles.statPill}>
+                    <Text style={styles.statPillText}>{weeklyStats.plannedCount}/7 days</Text>
+                  </View>
+                  {itemsToBuy > 0 && (
+                    <View style={[styles.statPill, styles.statPillDark]}>
+                      <Text style={[styles.statPillText, styles.statPillTextLight]}>
+                        {itemsToBuy} to buy
+                      </Text>
+                    </View>
+                  )}
+                </View>
+              </View>
+
+              {/* Navigation: back arrow or tab bar */}
+              <View style={styles.workspace}>
+                {activeScreen === 'detail' ? (
+                  <Pressable onPress={goBackFromDetail} style={styles.backButton}>
+                    <Text style={styles.backArrow}>←</Text>
+                    <Text style={styles.backButtonText}>Back to {getBackLabel()}</Text>
+                  </Pressable>
+                ) : (
+                  <TabBar activeTab={activeScreen} onChange={setActiveScreen} tabs={TABS} />
+                )}
+                {renderMainScreen()}
+              </View>
+            </ScrollView>
           )}
-          {renderMainScreen()}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </SafeAreaView>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  outerContainer: {
+    flex: 1,
+    backgroundColor: Platform.OS === 'web' ? '#0d2b22' : colors.background,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  phoneFrame: {
+    flex: 1,
+    width: '100%',
+    maxWidth: 430,
+    backgroundColor: colors.background,
+    overflow: 'hidden',
+    ...(Platform.OS === 'web'
+      ? {
+          shadowColor: '#000',
+          shadowOpacity: 0.45,
+          shadowRadius: 50,
+          shadowOffset: { width: 0, height: 10 },
+        }
+      : {}),
+  },
   safeArea: {
     flex: 1,
     backgroundColor: colors.background,
   },
-  scrollContent: {
-    padding: spacing.lg,
-    paddingBottom: spacing.xxl,
-  },
-  backgroundShapeOne: {
+  bgShapeOne: {
     position: 'absolute',
-    top: -90,
-    right: -40,
-    width: 230,
-    height: 230,
-    borderRadius: 115,
+    top: -110,
+    right: -20,
+    width: 250,
+    height: 250,
+    borderRadius: 125,
     backgroundColor: colors.sun,
-    opacity: 0.32,
-  },
-  backgroundShapeTwo: {
-    position: 'absolute',
-    bottom: 60,
-    left: -70,
-    width: 220,
-    height: 220,
-    borderRadius: 110,
-    backgroundColor: colors.rose,
     opacity: 0.34,
   },
-  heroCard: {
-    backgroundColor: colors.paper,
-    borderRadius: radii.xl,
-    padding: spacing.xl,
-    borderWidth: 1,
-    borderColor: colors.border,
-    ...shadows.soft,
-  },
-  eyebrow: {
-    color: colors.accentDark,
-    fontFamily: fonts.bodyBold,
-    fontSize: 12,
-    letterSpacing: 2,
-    marginBottom: spacing.sm,
-  },
-  heroTitle: {
-    color: colors.ink,
-    fontFamily: fonts.heading,
-    fontSize: 31,
-    lineHeight: 38,
-  },
-  heroBody: {
-    color: colors.muted,
-    fontFamily: fonts.body,
-    fontSize: 16,
-    lineHeight: 24,
-    marginTop: spacing.md,
-    maxWidth: 720,
-  },
-  statsRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.md,
-    marginTop: spacing.xl,
-  },
-  statCard: {
-    minWidth: 120,
-    backgroundColor: colors.surfaceMuted,
-    borderRadius: radii.lg,
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.md,
-  },
-  statValue: {
-    color: colors.ink,
-    fontFamily: fonts.heading,
-    fontSize: 28,
-  },
-  statLabel: {
-    color: colors.muted,
-    fontFamily: fonts.body,
-    fontSize: 13,
-    marginTop: 4,
-  },
-  workspace: {
-    marginTop: spacing.xl,
-    backgroundColor: colors.paper,
-    borderRadius: radii.xl,
-    borderWidth: 1,
-    borderColor: colors.border,
-    padding: spacing.lg,
-    ...shadows.soft,
-  },
-  backButton: {
-    alignSelf: 'flex-start',
-    borderRadius: radii.pill,
-    backgroundColor: colors.surfaceMuted,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    marginBottom: spacing.md,
-  },
-  backButtonText: {
-    color: colors.accentDark,
-    fontFamily: fonts.bodyBold,
-    fontSize: 14,
+  bgShapeTwo: {
+    position: 'absolute',
+    bottom: 90,
+    left: -80,
+    width: 240,
+    height: 240,
+    borderRadius: 120,
+    backgroundColor: colors.sky,
+    opacity: 0.6,
   },
   loadingState: {
-    paddingVertical: spacing.xxl,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -377,5 +333,83 @@ const styles = StyleSheet.create({
     fontFamily: fonts.body,
     fontSize: 15,
     marginTop: spacing.md,
+  },
+  scrollContent: {
+    padding: spacing.lg,
+    paddingBottom: spacing.xxl,
+  },
+  appHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: spacing.lg,
+    paddingTop: spacing.sm,
+  },
+  appHeaderTitle: {
+    color: colors.forest,
+    fontFamily: fonts.heading,
+    fontSize: 22,
+  },
+  appHeaderSub: {
+    color: colors.muted,
+    fontFamily: fonts.body,
+    fontSize: 12,
+    marginTop: 1,
+  },
+  headerStats: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+    alignItems: 'center',
+  },
+  statPill: {
+    backgroundColor: colors.surfaceMuted,
+    borderRadius: radii.pill,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 5,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  statPillDark: {
+    backgroundColor: colors.forest,
+    borderColor: colors.forest,
+  },
+  statPillText: {
+    color: colors.accentDark,
+    fontFamily: fonts.bodyBold,
+    fontSize: 12,
+  },
+  statPillTextLight: {
+    color: colors.paper,
+  },
+  workspace: {
+    backgroundColor: colors.surfaceSoft,
+    borderRadius: radii.xl,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: spacing.lg,
+    ...shadows.soft,
+  },
+  backButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    borderRadius: radii.pill,
+    backgroundColor: colors.sky,
+    borderWidth: 1,
+    borderColor: colors.border,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    marginBottom: spacing.md,
+    gap: spacing.xs,
+  },
+  backArrow: {
+    color: colors.accentDark,
+    fontFamily: fonts.bodyBold,
+    fontSize: 16,
+  },
+  backButtonText: {
+    color: colors.accentDark,
+    fontFamily: fonts.bodyBold,
+    fontSize: 14,
   },
 });

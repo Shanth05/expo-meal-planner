@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, fonts, radii, spacing } from '../constants/theme';
+import { colors, fonts, radii, shadows, spacing } from '../constants/theme';
 
 export function TabBar({ tabs, activeTab, onChange }) {
   return (
@@ -27,15 +27,22 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: spacing.sm,
     marginBottom: spacing.lg,
+    backgroundColor: colors.surfaceMuted,
+    borderRadius: radii.xl,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: spacing.xs,
+    ...shadows.soft,
   },
   tab: {
-    backgroundColor: colors.surfaceMuted,
+    backgroundColor: 'transparent',
     borderRadius: radii.pill,
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.sm,
   },
   selectedTab: {
-    backgroundColor: colors.accent,
+    backgroundColor: colors.accentDark,
+    ...shadows.soft,
   },
   label: {
     color: colors.accentDark,

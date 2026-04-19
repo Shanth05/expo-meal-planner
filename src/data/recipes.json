@@ -297,5 +297,201 @@
       "Warm the pitas briefly so they open without tearing.",
       "Stuff the pitas with the salad mixture and serve."
     ]
+  },
+  {
+    "id": "scrambled-eggs-toast",
+    "title": "Scrambled Eggs on Toast",
+    "tagline": "A classic balanced breakfast that takes ten minutes and keeps you going until lunch.",
+    "mealType": "Breakfast",
+    "diet": "Balanced",
+    "cookTime": 10,
+    "budget": 2,
+    "protein": 18,
+    "calories": 380,
+    "rating": 4.6,
+    "tags": ["classic", "quick", "warm"],
+    "ingredients": [
+      { "name": "Eggs", "quantity": "3", "aisle": "Chilled" },
+      { "name": "Bread", "quantity": "2 slices", "aisle": "Bakery" },
+      { "name": "Butter", "quantity": "1 tsp", "aisle": "Chilled" },
+      { "name": "Milk", "quantity": "2 tbsp", "aisle": "Chilled" },
+      { "name": "Chives", "quantity": "small bunch", "aisle": "Produce" }
+    ],
+    "steps": [
+      "Whisk the eggs with milk and a pinch of salt.",
+      "Melt butter in a pan over low heat and add the eggs, stirring slowly.",
+      "Toast the bread and spoon the soft eggs on top with chopped chives."
+    ]
+  },
+  {
+    "id": "protein-smoothie-bowl",
+    "title": "Protein Smoothie Bowl",
+    "tagline": "A thick blended breakfast loaded with protein that eats like a meal.",
+    "mealType": "Breakfast",
+    "diet": "High Protein",
+    "cookTime": 8,
+    "budget": 3,
+    "protein": 28,
+    "calories": 420,
+    "rating": 4.5,
+    "tags": ["high-protein", "blended", "colorful"],
+    "ingredients": [
+      { "name": "Protein powder", "quantity": "1 scoop", "aisle": "Health" },
+      { "name": "Frozen banana", "quantity": "1", "aisle": "Frozen" },
+      { "name": "Greek yogurt", "quantity": "150g", "aisle": "Chilled" },
+      { "name": "Almond milk", "quantity": "80ml", "aisle": "Chilled" },
+      { "name": "Granola", "quantity": "25g", "aisle": "Breakfast" }
+    ],
+    "steps": [
+      "Blend the protein powder, banana, yogurt and almond milk until thick.",
+      "Pour into a bowl — it should be spoonable, not drinkable.",
+      "Top with granola and any extra fruit you have to hand."
+    ]
+  },
+  {
+    "id": "apple-peanut-butter-slices",
+    "title": "Apple and Peanut Butter Slices",
+    "tagline": "A two-ingredient snack that needs no preparation and handles afternoon hunger.",
+    "mealType": "Snack",
+    "diet": "Vegan",
+    "cookTime": 3,
+    "budget": 1,
+    "protein": 7,
+    "calories": 200,
+    "rating": 4.3,
+    "tags": ["no-cook", "portable", "sweet"],
+    "ingredients": [
+      { "name": "Apple", "quantity": "1", "aisle": "Produce" },
+      { "name": "Peanut butter", "quantity": "2 tbsp", "aisle": "Spreads" }
+    ],
+    "steps": [
+      "Core and slice the apple into even wedges.",
+      "Spoon peanut butter into a small pot for dipping.",
+      "Pack together so the slices stay crisp until needed."
+    ]
+  },
+  {
+    "id": "cottage-cheese-crackers",
+    "title": "Cottage Cheese and Oat Crackers",
+    "tagline": "A high-protein snack that takes two minutes and keeps you from raiding the vending machine.",
+    "mealType": "Snack",
+    "diet": "Vegetarian",
+    "cookTime": 5,
+    "budget": 2,
+    "protein": 15,
+    "calories": 230,
+    "rating": 4.2,
+    "tags": ["high-protein", "low-effort", "snack"],
+    "ingredients": [
+      { "name": "Cottage cheese", "quantity": "150g", "aisle": "Chilled" },
+      { "name": "Oat crackers", "quantity": "6", "aisle": "Snacks" },
+      { "name": "Cherry tomatoes", "quantity": "6", "aisle": "Produce" },
+      { "name": "Black pepper", "quantity": "pinch", "aisle": "Spices" }
+    ],
+    "steps": [
+      "Spoon cottage cheese onto each cracker.",
+      "Halve the cherry tomatoes and press one onto each.",
+      "Finish with a crack of black pepper."
+    ]
+  },
+  {
+    "id": "chicken-avocado-bowl",
+    "title": "Chicken and Avocado Rice Bowl",
+    "tagline": "A high-protein lunch that works as meal prep for two days running.",
+    "mealType": "Lunch",
+    "diet": "High Protein",
+    "cookTime": 20,
+    "budget": 5,
+    "protein": 37,
+    "calories": 590,
+    "rating": 4.7,
+    "tags": ["meal-prep", "high-protein", "filling"],
+    "ingredients": [
+      { "name": "Chicken breast", "quantity": "200g", "aisle": "Chilled" },
+      { "name": "Cooked rice", "quantity": "200g", "aisle": "Dry goods" },
+      { "name": "Avocado", "quantity": "1", "aisle": "Produce" },
+      { "name": "Lime", "quantity": "1", "aisle": "Produce" },
+      { "name": "Soy sauce", "quantity": "1 tbsp", "aisle": "Condiments" }
+    ],
+    "steps": [
+      "Season and pan-fry the chicken breast until cooked through, then slice.",
+      "Warm the rice and arrange in bowls with sliced avocado.",
+      "Lay the chicken on top and finish with lime juice and soy sauce."
+    ]
+  },
+  {
+    "id": "minestrone-soup",
+    "title": "Quick Minestrone Soup",
+    "tagline": "A vegetable-packed one-pot dinner that stretches well and reheats even better.",
+    "mealType": "Dinner",
+    "diet": "Vegan",
+    "cookTime": 30,
+    "budget": 3,
+    "protein": 14,
+    "calories": 380,
+    "rating": 4.4,
+    "tags": ["one-pot", "freezer-friendly", "budget"],
+    "ingredients": [
+      { "name": "Canned tomatoes", "quantity": "1 can", "aisle": "Canned goods" },
+      { "name": "Cannellini beans", "quantity": "1 can", "aisle": "Canned goods" },
+      { "name": "Pasta", "quantity": "80g", "aisle": "Dry goods" },
+      { "name": "Carrot", "quantity": "2", "aisle": "Produce" },
+      { "name": "Vegetable stock", "quantity": "700ml", "aisle": "Dry goods" }
+    ],
+    "steps": [
+      "Sauté the carrots in a little oil until they begin to soften.",
+      "Pour in the stock and tomatoes, then add the beans and bring to a simmer.",
+      "Add the pasta and cook until tender, then season and serve."
+    ]
+  },
+  {
+    "id": "prawn-stir-fry",
+    "title": "Prawn and Vegetable Stir Fry",
+    "tagline": "A fast pescatarian dinner that looks more impressive than the effort it takes.",
+    "mealType": "Dinner",
+    "diet": "Pescatarian",
+    "cookTime": 18,
+    "budget": 6,
+    "protein": 29,
+    "calories": 450,
+    "rating": 4.6,
+    "tags": ["fast", "omega-3", "weeknight"],
+    "ingredients": [
+      { "name": "Prawns", "quantity": "200g", "aisle": "Chilled" },
+      { "name": "Egg noodles", "quantity": "150g", "aisle": "Dry goods" },
+      { "name": "Bell pepper", "quantity": "1", "aisle": "Produce" },
+      { "name": "Broccoli", "quantity": "1/2 head", "aisle": "Produce" },
+      { "name": "Soy sauce", "quantity": "2 tbsp", "aisle": "Condiments" }
+    ],
+    "steps": [
+      "Cook the noodles and drain them, then set aside.",
+      "Stir fry the prawns until pink, then add the vegetables and cook until just tender.",
+      "Toss through the noodles and soy sauce and serve immediately."
+    ]
+  },
+  {
+    "id": "beef-mince-pasta",
+    "title": "Beef Mince Pasta",
+    "tagline": "A reliable weeknight dinner that everyone knows how to make and nobody gets bored of.",
+    "mealType": "Dinner",
+    "diet": "Balanced",
+    "cookTime": 25,
+    "budget": 5,
+    "protein": 33,
+    "calories": 620,
+    "rating": 4.7,
+    "tags": ["batch-cook", "comfort", "classic"],
+    "ingredients": [
+      { "name": "Beef mince", "quantity": "250g", "aisle": "Chilled" },
+      { "name": "Pasta", "quantity": "200g", "aisle": "Dry goods" },
+      { "name": "Canned tomatoes", "quantity": "1 can", "aisle": "Canned goods" },
+      { "name": "Onion", "quantity": "1", "aisle": "Produce" },
+      { "name": "Garlic", "quantity": "2 cloves", "aisle": "Produce" }
+    ],
+    "steps": [
+      "Brown the mince with onion and garlic until cooked through.",
+      "Add the canned tomatoes and simmer for ten minutes to develop the sauce.",
+      "Cook the pasta, drain and toss with the sauce."
+    ]
   }
 ]

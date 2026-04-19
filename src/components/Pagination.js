@@ -36,16 +36,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: spacing.sm,
-    marginTop: spacing.sm,
+    marginTop: spacing.md,
   },
   button: {
-    backgroundColor: colors.accent,
+    backgroundColor: colors.accentDark,
     borderRadius: radii.pill,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
   },
   buttonDisabled: {
-    backgroundColor: colors.surfaceMuted,
+    backgroundColor: colors.surfaceSoft,
   },
   buttonText: {
     color: colors.paper,
@@ -56,7 +56,12 @@ const styles = StyleSheet.create({
     color: colors.muted,
   },
   pageLabel: {
-    color: colors.muted,
+    color: colors.accentDark,
+    backgroundColor: colors.surfaceMuted,
+    borderRadius: radii.pill,
+    overflow: 'hidden',
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
     fontFamily: fonts.body,
     fontSize: 13,
   },

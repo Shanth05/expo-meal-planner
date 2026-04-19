@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { colors, fonts, radii, spacing } from '../constants/theme';
+import { colors, fonts, radii, shadows, spacing } from '../constants/theme';
 
 function OptionRow({ label, options, selected, onChange }) {
   return (
@@ -61,24 +61,27 @@ export function FilterPanel({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.surfaceMuted,
+    backgroundColor: colors.paper,
     borderRadius: radii.lg,
     padding: spacing.lg,
     marginBottom: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.soft,
   },
   title: {
-    color: colors.ink,
+    color: colors.forest,
     fontFamily: fonts.heading,
-    fontSize: 26,
+    fontSize: 28,
   },
   caption: {
-    color: colors.muted,
+    color: colors.accentDark,
     fontFamily: fonts.body,
     fontSize: 14,
     marginTop: spacing.sm,
   },
   searchInput: {
-    backgroundColor: colors.paper,
+    backgroundColor: colors.surfaceSoft,
     borderRadius: radii.md,
     borderWidth: 1,
     borderColor: colors.border,
@@ -93,7 +96,7 @@ const styles = StyleSheet.create({
     marginTop: spacing.lg,
   },
   optionLabel: {
-    color: colors.ink,
+    color: colors.accentDark,
     fontFamily: fonts.bodyBold,
     fontSize: 14,
     marginBottom: spacing.sm,
@@ -104,6 +107,7 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
   },
   optionChip: {
+    backgroundColor: colors.surfaceSoft,
     borderRadius: radii.pill,
     borderWidth: 1,
     borderColor: colors.border,
