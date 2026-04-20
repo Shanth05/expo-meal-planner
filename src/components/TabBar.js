@@ -13,7 +13,9 @@ export function TabBar({ tabs, activeTab, onChange }) {
             onPress={() => onChange(tab.key)}
             style={[styles.tab, selected && styles.selectedTab]}
           >
-            <Text style={[styles.label, selected && styles.selectedLabel]}>{tab.label}</Text>
+            <Text style={[styles.label, selected && styles.selectedLabel]} numberOfLines={1}>
+              {tab.label}
+            </Text>
           </Pressable>
         );
       })}
@@ -24,8 +26,6 @@ export function TabBar({ tabs, activeTab, onChange }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
     marginBottom: spacing.lg,
     backgroundColor: colors.surfaceMuted,
     borderRadius: radii.xl,
@@ -35,10 +35,12 @@ const styles = StyleSheet.create({
     ...shadows.soft,
   },
   tab: {
+    flex: 1,
     backgroundColor: 'transparent',
     borderRadius: radii.pill,
-    paddingHorizontal: spacing.lg,
+    paddingHorizontal: spacing.xs,
     paddingVertical: spacing.sm,
+    alignItems: 'center',
   },
   selectedTab: {
     backgroundColor: colors.accentDark,
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
   label: {
     color: colors.accentDark,
     fontFamily: fonts.bodyBold,
-    fontSize: 14,
+    fontSize: 13,
   },
   selectedLabel: {
     color: colors.paper,
