@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LectureFuel — User Guide</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #f4f8f2;
+      color: #17332c;
+      padding: 40px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Cover */
+    .cover {
+      background: #163f33;
+      border-radius: 20px;
+      padding: 48px 40px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -40px;
+      width: 200px; height: 200px;
+      border-radius: 100px;
+      background: #f5c768;
+      opacity: 0.25;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -40px;
+      width: 180px; height: 180px;
+      border-radius: 90px;
+      background: #d8f0ee;
+      opacity: 0.3;
+    }
+    .cover-badge {
+      display: inline-block;
+      background: #1b8a6b;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .cover h1 {
+      color: #ffffff;
+      font-size: 48px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .cover p {
+      color: #d8f0ee;
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 480px;
+    }
+    .cover-meta {
+      margin-top: 28px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .cover-chip {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #d8f0ee;
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 999px;
+    }
+
+    /* Steps */
+    .step {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #cfe1d4;
+      padding: 28px 32px;
+      margin-bottom: 20px;
+      border-left: 5px solid #1b8a6b;
+      page-break-inside: avoid;
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .step-number {
+      background: #163f33;
+      color: #ffffff;
+      font-family: 'Arial', sans-serif;
+      font-size: 15px;
+      font-weight: bold;
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step h2 {
+      font-size: 22px;
+      color: #163f33;
+    }
+    .step p {
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      color: #5e726a;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .step ul {
+      padding-left: 20px;
+    }
+    .step ul li {
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      color: #5e726a;
+      line-height: 1.8;
+    }
+    .step ul li strong {
+      color: #163f33;
+    }
+
+    /* Sub sections */
+    .sub-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      color: #1b8a6b;
+      text-transform: uppercase;
+      margin: 14px 0 6px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+    }
+    th {
+      background: #e9f4ed;
+      color: #0e5a45;
+      font-weight: bold;
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 2px solid #cfe1d4;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e9f4ed;
+      color: #17332c;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    td:first-child { font-weight: bold; color: #163f33; }
+
+    /* Tip boxes */
+    .tip {
+      background: #e9f4ed;
+      border-radius: 12px;
+      border: 1px solid #cfe1d4;
+      padding: 14px 18px;
+      margin-top: 12px;
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      color: #0e5a45;
+      line-height: 1.6;
+    }
+    .tip strong { color: #163f33; }
+
+    /* Section divider */
+    .section-title {
+      font-size: 13px;
+      font-family: 'Arial', sans-serif;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1b8a6b;
+      margin: 36px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #cfe1d4;
+    }
+
+    /* Reference card */
+    .ref-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .ref-card {
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid #cfe1d4;
+      padding: 18px 20px;
+    }
+    .ref-card h4 {
+      font-size: 14px;
+      color: #163f33;
+      margin-bottom: 10px;
+      font-family: 'Arial', sans-serif;
+    }
+    .ref-card ul {
+      padding-left: 16px;
+    }
+    .ref-card ul li {
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      color: #5e726a;
+      line-height: 1.8;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #cfe1d4;
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+      color: #5e726a;
+    }
+
+    @media print {
+      body { background: white; padding: 20px; }
+      .step { page-break-inside: avoid; }
+      .cover { page-break-after: always; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="cover-badge">USER GUIDE</div>
+    <h1>LectureFuel</h1>
+    <p>A step-by-step guide to planning your student meals, managing your pantry, and building a smart weekly shopping list.</p>
+    <div class="cover-meta">
+      <span class="cover-chip">React Native</span>
+      <span class="cover-chip">Expo Snack</span>
+      <span class="cover-chip">AsyncStorage</span>
+      <span class="cover-chip">10 Steps</span>
+    </div>
+  </div>
+
+  <!-- Steps -->
+  <div class="section-title">Getting Started</div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">1</div>
+      <h2>Welcome Screen</h2>
+    </div>
+    <p>Open the app and you will land on the LectureFuel welcome screen.</p>
+    <ul>
+      <li>Read the 4 feature cards — Recipe Library, Weekly Planner, Shopping List, Pantry Tracker</li>
+      <li>Tap <strong>"Get Started →"</strong> to enter the main app</li>
+      <li>Your saved data loads automatically from the last session</li>
+    </ul>
+  </div>
+
+  <div class="section-title">Recipes</div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">2</div>
+      <h2>Browse Recipes</h2>
+    </div>
+    <p>The Recipes tab is your main library of 20 student-friendly meals.</p>
+    <div class="sub-label">Search</div>
+    <ul>
+      <li>Type any ingredient, diet, or meal name in the search box — results update instantly</li>
+    </ul>
+    <div class="sub-label">Filter</div>
+    <ul>
+      <li>Tap a <strong>Meal Type</strong> chip — All, Breakfast, Lunch, Dinner, Snack</li>
+      <li>Tap a <strong>Diet</strong> chip — All, Balanced, High Protein, Vegetarian, Vegan, Pescatarian</li>
+    </ul>
+    <div class="sub-label">Sort</div>
+    <ul>
+      <li>Choose from — Popular, Time, Budget, Protein, A-Z</li>
+    </ul>
+    <div class="sub-label">Pagination</div>
+    <ul>
+      <li>Tap <strong>Next</strong> / <strong>Previous</strong> to move between pages (4 recipes per page)</li>
+      <li>On mobile — pull the list down to refresh</li>
+    </ul>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">3</div>
+      <h2>View a Recipe</h2>
+    </div>
+    <p>Tap any recipe card to open the full detail screen.</p>
+    <ul>
+      <li>See <strong>cook time</strong>, <strong>protein</strong>, and <strong>budget</strong> at a glance</li>
+      <li>Full <strong>ingredients list</strong> with quantities and supermarket aisle</li>
+      <li>Step-by-step <strong>cooking instructions</strong></li>
+      <li>Tap <strong>"← Back to Recipes"</strong> to return</li>
+    </ul>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">4</div>
+      <h2>Save a Recipe</h2>
+    </div>
+    <p>There are three ways to save a recipe to your favourites:</p>
+    <table>
+      <tr><th>Method</th><th>How</th></tr>
+      <tr><td>Save Button</td><td>Tap "Save idea" on any recipe card — turns dark green when saved</td></tr>
+      <tr><td>Swipe Gesture</td><td>Swipe the recipe card left — green "♥ Save" background reveals and saves it</td></tr>
+      <tr><td>Long Press</td><td>Hold the card for 1 second — tap "♥ Save" from the quick action bar</td></tr>
+    </table>
+    <div class="tip"><strong>Tip:</strong> Saved recipes appear in the Saved tab and stay there between sessions.</div>
+  </div>
+
+  <div class="section-title">Weekly Planning</div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">5</div>
+      <h2>Add a Recipe to Your Week Plan</h2>
+    </div>
+    <ul>
+      <li>Tap any recipe card to open it</li>
+      <li>Scroll to the <strong>"Assign to your week"</strong> section</li>
+      <li>Tap a day chip — <strong>Mon, Tue, Wed, Thu, Fri, Sat, Sun</strong></li>
+      <li>Chip turns dark green — recipe is now assigned to that day</li>
+      <li>Tap the same day again to <strong>remove</strong> the assignment</li>
+    </ul>
+    <div class="tip"><strong>Note:</strong> Assigning a new recipe to a day that already has one will replace it automatically.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">6</div>
+      <h2>Manage Your Week Plan</h2>
+    </div>
+    <p>Tap the <strong>Week Plan</strong> tab to see your full 7-day schedule.</p>
+    <ul>
+      <li>Tap <strong>"View"</strong> on any day to open that recipe</li>
+      <li>Tap <strong>"Mark cooked"</strong> to mark the day as done</li>
+      <li>Tap <strong>"Undo cooked"</strong> to reverse it</li>
+      <li>Tap <strong>"Remove"</strong> to clear a day</li>
+      <li>Tap <strong>"Reset week"</strong> to clear all 7 days at once</li>
+    </ul>
+    <div class="sub-label">Stats shown at the top</div>
+    <ul>
+      <li>Scheduled meals, completed days, total budget points, weekly protein (g)</li>
+    </ul>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">7</div>
+      <h2>Use the Auto Shopping List</h2>
+    </div>
+    <p>Scroll down on the <strong>Week Plan</strong> tab to see your shopping list.</p>
+    <ul>
+      <li>Automatically built from <strong>all meals currently in your plan</strong></li>
+      <li>Each item shows: name, aisle, quantity, and which recipe needs it</li>
+      <li>Items already stocked in your pantry show <strong>"In pantry"</strong> and drop to the bottom</li>
+      <li>Items to buy show <strong>"Buy"</strong> in green</li>
+      <li>Tap <strong>"Manage pantry"</strong> to go straight to the Pantry tab</li>
+    </ul>
+  </div>
+
+  <div class="section-title">Pantry & Favourites</div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">8</div>
+      <h2>Track Your Pantry</h2>
+    </div>
+    <p>Tap the <strong>Pantry</strong> tab to manage your ingredients at home.</p>
+    <ul>
+      <li><strong>Search</strong> by ingredient name</li>
+      <li><strong>Filter</strong> by All / Needed this week / Stocked</li>
+      <li>Tap any ingredient to toggle its status:</li>
+    </ul>
+    <table>
+      <tr><th>Status</th><th>Meaning</th><th>Effect on Shopping List</th></tr>
+      <tr><td>Missing (red)</td><td>You don't have it</td><td>Shows as "Buy" in shopping list</td></tr>
+      <tr><td>Stocked (green)</td><td>You already have it</td><td>Removed from shopping list</td></tr>
+    </table>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">9</div>
+      <h2>View Saved Recipes</h2>
+    </div>
+    <p>Tap the <strong>Saved</strong> tab to see all your favourited recipes.</p>
+    <ul>
+      <li>Stats shown: total saved, total protein, average cook time</li>
+      <li>Tap any card to open the recipe and assign it to a day</li>
+      <li>Tap <strong>"Saved"</strong> on the card to unsave it</li>
+    </ul>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">10</div>
+      <h2>Data Saves Automatically</h2>
+    </div>
+    <ul>
+      <li>Everything is saved to <strong>AsyncStorage</strong> on your device instantly</li>
+      <li>Favourites, weekly plan, pantry status, and completed days all persist between sessions</li>
+      <li>No account or internet connection required — works fully offline</li>
+    </ul>
+    <div class="tip"><strong>Tip:</strong> Close and reopen the app — all your data will still be there.</div>
+  </div>
+
+  <!-- Reference -->
+  <div class="section-title">Quick Reference</div>
+
+  <div class="ref-grid">
+    <div class="ref-card">
+      <h4>Gesture Reference</h4>
+      <ul>
+        <li>Tap card → Open recipe</li>
+        <li>Long press card → Quick actions</li>
+        <li>Swipe card left → Save recipe</li>
+        <li>Pull down → Refresh list</li>
+        <li>Tap day chip → Assign to plan</li>
+      </ul>
+    </div>
+    <div class="ref-card">
+      <h4>Tab Navigation</h4>
+      <ul>
+        <li>Recipes → Browse library</li>
+        <li>Saved → Favourites</li>
+        <li>Week Plan → Planner + list</li>
+        <li>Pantry → Ingredient tracker</li>
+      </ul>
+    </div>
+    <div class="ref-card">
+      <h4>CRUD Operations</h4>
+      <ul>
+        <li>Create → Save / assign recipe</li>
+        <li>Read → Browse / view recipes</li>
+        <li>Update → Toggle cooked / pantry</li>
+        <li>Delete → Remove / reset week</li>
+      </ul>
+    </div>
+    <div class="ref-card">
+      <h4>Data Saved</h4>
+      <ul>
+        <li>Saved recipes (favourites)</li>
+        <li>Weekly meal plan</li>
+        <li>Completed days</li>
+        <li>Pantry stocked items</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>LectureFuel — Student Meal Planner &nbsp;|&nbsp; Built with React Native + Expo &nbsp;|&nbsp; snack.expo.dev/@shanth05/expo--meal-planner</p>
+  </div>
+
+</body>
+</html>
