@@ -3,18 +3,15 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { colors, fonts, radii, shadows, spacing } from '../constants/theme';
 
 const FEATURES = [
-  { icon: '🥗', label: 'Recipe Library', desc: 'Filter by meal type, diet, cook time & budget' },
-  { icon: '📅', label: 'Weekly Planner', desc: 'Assign meals to each day of the week' },
-  { icon: '🛒', label: 'Shopping List', desc: 'Auto-built from your weekly meal plan' },
-  { icon: '🥫', label: 'Pantry Tracker', desc: 'Mark ingredients you already have at home' },
+  { icon: '🥗', label: 'Recipe Library', desc: 'Filter by meal type, diet, cook time & budget', screen: 'library' },
+  { icon: '📅', label: 'Weekly Planner', desc: 'Assign meals to each day of the week', screen: 'plan' },
+  { icon: '🛒', label: 'Shopping List', desc: 'Auto-built from your weekly meal plan', screen: 'plan' },
+  { icon: '🥫', label: 'Pantry Tracker', desc: 'Mark ingredients you already have at home', screen: 'pantry' },
 ];
 
-export function WelcomeScreen({ onGetStarted }) {
+export function WelcomeScreen({ onNavigate }) {
   return (
-    <ScrollView
-      contentContainerStyle={styles.scroll}
-      showsVerticalScrollIndicator={false}
-    >
+    <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
       <View style={styles.glowTop} pointerEvents="none" />
       <View style={styles.glowBottom} pointerEvents="none" />
 
@@ -29,7 +26,11 @@ export function WelcomeScreen({ onGetStarted }) {
 
       <View style={styles.featureList}>
         {FEATURES.map((f) => (
-          <View key={f.label} style={styles.featureRow}>
+          <Pressable
+            key={f.label}
+            style={({ pressed }) => [styles.featureRow, pressed && styles.featureRowPressed]}
+            onPress={() => onNavigate && onNavigate(f.screen)}
+          >
             <View style={styles.featureIconBox}>
               <Text style={styles.featureIconText}>{f.icon}</Text>
             </View>
@@ -37,16 +38,10 @@ export function WelcomeScreen({ onGetStarted }) {
               <Text style={styles.featureLabel}>{f.label}</Text>
               <Text style={styles.featureDesc}>{f.desc}</Text>
             </View>
-          </View>
+            <Text style={styles.featureArrow}>›</Text>
+          </Pressable>
         ))}
       </View>
-
-      <Pressable
-        onPress={onGetStarted}
-        style={({ pressed }) => [styles.cta, pressed && styles.ctaPressed]}
-      >
-        <Text style={styles.ctaText}>Get Started  →</Text>
-      </Pressable>
 
       <Text style={styles.hint}>Your data is saved automatically between sessions</Text>
     </ScrollView>
@@ -57,7 +52,7 @@ const styles = StyleSheet.create({
   scroll: {
     flexGrow: 1,
     padding: spacing.xl,
-    paddingTop: spacing.xxl,
+    paddingTop: spacing.lg,
     paddingBottom: spacing.xxl,
     backgroundColor: colors.background,
   },
@@ -107,11 +102,11 @@ const styles = StyleSheet.create({
     fontFamily: fonts.body,
     fontSize: 16,
     lineHeight: 25,
-    marginBottom: spacing.xxl,
+    marginBottom: spacing.xl,
   },
   featureList: {
     gap: spacing.md,
-    marginBottom: spacing.xxl,
+    marginBottom: spacing.xl,
   },
   featureRow: {
     flexDirection: 'row',
@@ -123,6 +118,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     ...shadows.soft,
+  },
+  featureRowPressed: {
+    opacity: 0.75,
+    backgroundColor: colors.surfaceMuted,
   },
   featureIconBox: {
     width: 46,
@@ -150,29 +149,15 @@ const styles = StyleSheet.create({
     marginTop: 2,
     lineHeight: 18,
   },
-  cta: {
-    backgroundColor: colors.forest,
-    borderRadius: radii.lg,
-    paddingVertical: spacing.lg,
-    paddingHorizontal: spacing.xl,
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...shadows.soft,
-  },
-  ctaPressed: {
-    opacity: 0.82,
-  },
-  ctaText: {
-    color: colors.paper,
+  featureArrow: {
+    color: colors.muted,
     fontFamily: fonts.bodyBold,
-    fontSize: 17,
-    letterSpacing: 0.3,
+    fontSize: 20,
   },
   hint: {
     color: colors.muted,
     fontFamily: fonts.body,
     fontSize: 13,
     textAlign: 'center',
-    marginTop: spacing.lg,
   },
 });
