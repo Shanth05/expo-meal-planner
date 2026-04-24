@@ -19,6 +19,7 @@ import { RecipeDetailScreen } from './src/screens/RecipeDetailScreen';
 import { PlanScreen } from './src/screens/PlanScreen';
 import { PantryScreen } from './src/screens/PantryScreen';
 import { WelcomeScreen } from './src/screens/WelcomeScreen';
+import { SplashScreen } from './src/screens/SplashScreen';
 import { buildShoppingList, buildWeeklyStats, getRecipeById } from './src/utils/plan';
 import { loadStoredState, saveStoredState } from './src/utils/storage';
 import { FavoritesScreen } from './src/screens/FavoritesScreen';
@@ -31,9 +32,10 @@ const DEFAULT_STATE = {
 };
 
 const TABS = [
+  { key: 'welcome', label: 'Home' },
   { key: 'library', label: 'Recipes' },
   { key: 'saved', label: 'Saved' },
-  { key: 'plan', label: 'Week Plan' },
+  { key: 'plan', label: 'Plan' },
   { key: 'pantry', label: 'Pantry' },
 ];
 
@@ -90,7 +92,7 @@ function appReducer(state, action) {
 export default function App() {
   const [state, dispatch] = useReducer(appReducer, DEFAULT_STATE);
   const [isHydrated, setIsHydrated] = useState(false);
-  const [activeScreen, setActiveScreen] = useState('welcome');
+  const [activeScreen, setActiveScreen] = useState('splash');
   const [selectedRecipeId, setSelectedRecipeId] = useState(null);
   const [detailReturnScreen, setDetailReturnScreen] = useState('library');
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -139,6 +141,10 @@ export default function App() {
   }
 
   function renderMainScreen() {
+    if (activeScreen === 'welcome') {
+      return <WelcomeScreen onNavigate={setActiveScreen} />;
+    }
+
     if (activeScreen === 'detail' && selectedRecipe) {
       return (
         <RecipeDetailScreen
@@ -220,8 +226,8 @@ export default function App() {
               <ActivityIndicator size="large" color={colors.accent} />
               <Text style={styles.loadingText}>Loading your saved week...</Text>
             </View>
-          ) : activeScreen === 'welcome' ? (
-            <WelcomeScreen onGetStarted={() => setActiveScreen('library')} />
+          ) : activeScreen === 'splash' ? (
+            <SplashScreen onContinue={() => setActiveScreen('welcome')} />
           ) : (
             <ScrollView
               contentContainerStyle={styles.scrollContent}
@@ -265,7 +271,11 @@ export default function App() {
                     <Text style={styles.backButtonText}>Back to {getBackLabel()}</Text>
                   </Pressable>
                 ) : (
-                  <TabBar activeTab={activeScreen} onChange={setActiveScreen} tabs={TABS} />
+                  <TabBar
+                    activeTab={activeScreen}
+                    onChange={setActiveScreen}
+                    tabs={TABS}
+                  />
                 )}
                 {renderMainScreen()}
               </View>
