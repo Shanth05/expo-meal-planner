@@ -24,6 +24,7 @@ export function WelcomeScreen({ onNavigate }) {
         Plan your week, browse recipes, and get a smart shopping list — built for students.
       </Text>
 
+      <Text style={styles.sectionLabel}>What you can do</Text>
       <View style={styles.featureList}>
         {FEATURES.map((f) => (
           <Pressable
@@ -148,6 +149,14 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginTop: 2,
     lineHeight: 18,
+  },
+  sectionLabel: {
+    color: colors.forest,
+    fontFamily: fonts.bodyBold,
+    fontSize: 13,
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+    marginBottom: spacing.sm,
   },
   featureArrow: {
     color: colors.muted,
