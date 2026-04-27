@@ -6,13 +6,12 @@ import {
   RefreshControl,
   SafeAreaView,
   ScrollView,
-  StyleSheet,
   Text,
   View,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import recipes from './src/data/recipes.json';
-import { colors, fonts, radii, shadows, spacing } from './src/constants/theme';
+import { appStyles as styles } from './src/styles';
 import { TabBar } from './src/components/TabBar';
 import { LibraryScreen } from './src/screens/LibraryScreen';
 import { RecipeDetailScreen } from './src/screens/RecipeDetailScreen';
@@ -286,140 +285,3 @@ export default function App() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  outerContainer: {
-    flex: 1,
-    backgroundColor: Platform.OS === 'web' ? '#0d2b22' : colors.background,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  phoneFrame: {
-    flex: 1,
-    width: '100%',
-    maxWidth: 430,
-    backgroundColor: colors.background,
-    overflow: 'hidden',
-    ...(Platform.OS === 'web'
-      ? {
-          shadowColor: '#000',
-          shadowOpacity: 0.45,
-          shadowRadius: 50,
-          shadowOffset: { width: 0, height: 10 },
-        }
-      : {}),
-  },
-  safeArea: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  bgShapeOne: {
-    position: 'absolute',
-    top: -110,
-    right: -20,
-    width: 250,
-    height: 250,
-    borderRadius: 125,
-    backgroundColor: colors.sun,
-    opacity: 0.34,
-  },
-  bgShapeTwo: {
-    position: 'absolute',
-    bottom: 90,
-    left: -80,
-    width: 240,
-    height: 240,
-    borderRadius: 120,
-    backgroundColor: colors.sky,
-    opacity: 0.6,
-  },
-  loadingState: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  loadingText: {
-    color: colors.muted,
-    fontFamily: fonts.body,
-    fontSize: 15,
-    marginTop: spacing.md,
-  },
-  scrollContent: {
-    padding: spacing.lg,
-    paddingBottom: spacing.xxl,
-  },
-  appHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: spacing.lg,
-    paddingTop: spacing.sm,
-  },
-  appHeaderTitle: {
-    color: colors.forest,
-    fontFamily: fonts.heading,
-    fontSize: 22,
-  },
-  appHeaderSub: {
-    color: colors.muted,
-    fontFamily: fonts.body,
-    fontSize: 12,
-    marginTop: 1,
-  },
-  headerStats: {
-    flexDirection: 'row',
-    gap: spacing.sm,
-    alignItems: 'center',
-  },
-  statPill: {
-    backgroundColor: colors.surfaceMuted,
-    borderRadius: radii.pill,
-    paddingHorizontal: spacing.sm,
-    paddingVertical: 5,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  statPillDark: {
-    backgroundColor: colors.forest,
-    borderColor: colors.forest,
-  },
-  statPillText: {
-    color: colors.accentDark,
-    fontFamily: fonts.bodyBold,
-    fontSize: 12,
-  },
-  statPillTextLight: {
-    color: colors.paper,
-  },
-  workspace: {
-    backgroundColor: colors.surfaceSoft,
-    borderRadius: radii.xl,
-    borderWidth: 1,
-    borderColor: colors.border,
-    padding: spacing.lg,
-    ...shadows.soft,
-  },
-  backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    borderRadius: radii.pill,
-    backgroundColor: colors.sky,
-    borderWidth: 1,
-    borderColor: colors.border,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    marginBottom: spacing.md,
-    gap: spacing.xs,
-  },
-  backArrow: {
-    color: colors.accentDark,
-    fontFamily: fonts.bodyBold,
-    fontSize: 16,
-  },
-  backButtonText: {
-    color: colors.accentDark,
-    fontFamily: fonts.bodyBold,
-    fontSize: 14,
-  },
-});
