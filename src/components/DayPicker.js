@@ -1,6 +1,6 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, fonts, radii, spacing } from '../constants/theme';
+import { Pressable, Text, View } from 'react-native';
+import { dayPickerStyles as styles } from '../styles';
 
 export function DayPicker({ completedDays, onToggle, planByDay, recipeId }) {
   return (
@@ -22,37 +22,3 @@ export function DayPicker({ completedDays, onToggle, planByDay, recipeId }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
-    marginTop: spacing.md,
-  },
-  chip: {
-    backgroundColor: colors.surfaceSoft,
-    borderRadius: radii.pill,
-    borderWidth: 1,
-    borderColor: colors.border,
-    paddingHorizontal: spacing.sm,
-    paddingVertical: spacing.sm,
-    minWidth: 64,
-    alignItems: 'center',
-  },
-  chipSelected: {
-    backgroundColor: colors.accentDark,
-    borderColor: colors.accentDark,
-  },
-  chipCompleted: {
-    backgroundColor: colors.success,
-    borderColor: colors.success,
-  },
-  label: {
-    color: colors.accentDark,
-    fontFamily: fonts.bodyBold,
-    fontSize: 13,
-  },
-  labelSelected: {
-    color: colors.paper,
-  },
-});
