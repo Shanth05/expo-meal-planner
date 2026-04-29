@@ -1,6 +1,7 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { colors, fonts, radii, shadows, spacing } from '../constants/theme';
+import { Pressable, Text, TextInput, View } from 'react-native';
+import { colors } from '../constants/theme';
+import { filterPanelStyles as styles } from '../styles';
 
 function OptionRow({ label, options, selected, onChange }) {
   return (
@@ -59,71 +60,3 @@ export function FilterPanel({
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.paper,
-    borderRadius: radii.lg,
-    padding: spacing.lg,
-    marginBottom: spacing.lg,
-    borderWidth: 1,
-    borderColor: colors.border,
-    ...shadows.soft,
-  },
-  title: {
-    color: colors.forest,
-    fontFamily: fonts.heading,
-    fontSize: 28,
-  },
-  caption: {
-    color: colors.accentDark,
-    fontFamily: fonts.body,
-    fontSize: 14,
-    marginTop: spacing.sm,
-  },
-  searchInput: {
-    backgroundColor: colors.surfaceSoft,
-    borderRadius: radii.md,
-    borderWidth: 1,
-    borderColor: colors.border,
-    color: colors.ink,
-    fontFamily: fonts.body,
-    fontSize: 15,
-    marginTop: spacing.lg,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.md,
-  },
-  optionGroup: {
-    marginTop: spacing.lg,
-  },
-  optionLabel: {
-    color: colors.accentDark,
-    fontFamily: fonts.bodyBold,
-    fontSize: 14,
-    marginBottom: spacing.sm,
-  },
-  optionRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
-  },
-  optionChip: {
-    backgroundColor: colors.surfaceSoft,
-    borderRadius: radii.pill,
-    borderWidth: 1,
-    borderColor: colors.border,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-  },
-  optionChipActive: {
-    backgroundColor: colors.accent,
-    borderColor: colors.accent,
-  },
-  optionText: {
-    color: colors.accentDark,
-    fontFamily: fonts.bodyBold,
-    fontSize: 13,
-  },
-  optionTextActive: {
-    color: colors.paper,
-  },
-});

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, fonts, radii, spacing } from '../constants/theme';
+import { Pressable, Text, View } from 'react-native';
+import { paginationStyles as styles } from '../styles';
 
 export function Pagination({ currentPage, pageCount, onChange }) {
   if (pageCount <= 1) {
@@ -30,39 +30,3 @@ export function Pagination({ currentPage, pageCount, onChange }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: spacing.sm,
-    marginTop: spacing.md,
-  },
-  button: {
-    backgroundColor: colors.accentDark,
-    borderRadius: radii.pill,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-  },
-  buttonDisabled: {
-    backgroundColor: colors.surfaceSoft,
-  },
-  buttonText: {
-    color: colors.paper,
-    fontFamily: fonts.bodyBold,
-    fontSize: 13,
-  },
-  buttonTextDisabled: {
-    color: colors.muted,
-  },
-  pageLabel: {
-    color: colors.accentDark,
-    backgroundColor: colors.surfaceMuted,
-    borderRadius: radii.pill,
-    overflow: 'hidden',
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    fontFamily: fonts.body,
-    fontSize: 13,
-  },
-});
