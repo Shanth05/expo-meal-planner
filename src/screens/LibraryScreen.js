@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { FilterPanel } from '../components/FilterPanel';
 import { Pagination } from '../components/Pagination';
 import { RecipeCard } from '../components/RecipeCard';
-import { colors, fonts, spacing } from '../constants/theme';
+import { libraryStyles as styles } from '../styles';
 import { getAssignedDays } from '../utils/plan';
 
 const PAGE_SIZE = 4;
@@ -99,21 +99,3 @@ export function LibraryScreen({ favorites, onOpenRecipe, onToggleFavorite, planB
   );
 }
 
-const styles = StyleSheet.create({
-  emptyState: {
-    alignItems: 'center',
-    paddingVertical: spacing.xxl,
-  },
-  emptyTitle: {
-    color: colors.ink,
-    fontFamily: fonts.heading,
-    fontSize: 24,
-  },
-  emptyBody: {
-    color: colors.muted,
-    fontFamily: fonts.body,
-    fontSize: 15,
-    marginTop: spacing.sm,
-    textAlign: 'center',
-  },
-});

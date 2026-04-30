@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { RecipeCard } from '../components/RecipeCard';
-import { colors, fonts, radii, shadows, spacing } from '../constants/theme';
+import { favoritesStyles as styles } from '../styles';
 import { getAssignedDays } from '../utils/plan';
 
 export function FavoritesScreen({ favorites, onOpenRecipe, onToggleFavorite, planByDay, recipes }) {
@@ -65,69 +65,3 @@ export function FavoritesScreen({ favorites, onOpenRecipe, onToggleFavorite, pla
   );
 }
 
-const styles = StyleSheet.create({
-  headerCard: {
-    backgroundColor: colors.paper,
-    borderRadius: radii.lg,
-    borderWidth: 1,
-    borderColor: colors.border,
-    padding: spacing.xl,
-    marginBottom: spacing.lg,
-    ...shadows.soft,
-  },
-  title: {
-    color: colors.forest,
-    fontFamily: fonts.heading,
-    fontSize: 28,
-  },
-  body: {
-    color: colors.muted,
-    fontFamily: fonts.body,
-    fontSize: 15,
-    lineHeight: 23,
-    marginTop: spacing.sm,
-  },
-  statsRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.md,
-    marginTop: spacing.xl,
-  },
-  statChip: {
-    backgroundColor: colors.surfaceMuted,
-    borderRadius: radii.md,
-    borderWidth: 1,
-    borderColor: colors.border,
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.md,
-    minWidth: 90,
-  },
-  statValue: {
-    color: colors.forest,
-    fontFamily: fonts.heading,
-    fontSize: 22,
-  },
-  statLabel: {
-    color: colors.muted,
-    fontFamily: fonts.body,
-    fontSize: 12,
-    marginTop: 2,
-  },
-  emptyState: {
-    alignItems: 'center',
-    paddingVertical: spacing.xxl,
-  },
-  emptyTitle: {
-    color: colors.ink,
-    fontFamily: fonts.heading,
-    fontSize: 24,
-  },
-  emptyBody: {
-    color: colors.muted,
-    fontFamily: fonts.body,
-    fontSize: 15,
-    lineHeight: 22,
-    marginTop: spacing.sm,
-    textAlign: 'center',
-  },
-});
